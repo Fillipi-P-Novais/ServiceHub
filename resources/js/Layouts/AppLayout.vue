@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
+import AppLayout from '@/Layouts/app/AppSidebarLayout.vue';
 import type { BreadcrumbItem } from '@/types';
 
 type Props = {
