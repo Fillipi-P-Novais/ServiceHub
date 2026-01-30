@@ -28,30 +28,57 @@ class TicketController extends Controller
         ]);
     }
 
+    // public function store(StoreTicketRequest $request, Project $project)
+    // {
+    //     $ticket = $project->tickets()->create([
+    //         'user_id' => auth()->id(),
+    //         'title' => $request->title,
+    //         'description' => $request->description,
+    //         'status' => 'open',
+    //     ]);
+
+    //     // Cria o TicketDetail vazio (1:1)
+    //     $ticket->detail()->create();
+
+    //     // Upload de anexo + Job
+    //     if ($request->hasFile('attachment')) {
+    //         $path = $request->file('attachment')->store("tickets/{$ticket->id}");
+    //         $ticket->update(['attachment_path' => $path]);
+
+    //         ProcessTicketAttachment::dispatch($ticket);
+    //     }
+
+    //     return redirect()
+    //         ->route('projects.tickets.show', [$project, $ticket])
+    //         ->with('success', 'Ticket criado com sucesso!');
+    // }
+
     public function store(StoreTicketRequest $request, Project $project)
     {
+        dd($request, $project);
         $ticket = $project->tickets()->create([
             'user_id' => auth()->id(),
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
             'status' => 'open',
         ]);
 
-        // Cria o TicketDetail vazio (1:1)
-        $ticket->detail()->create();
+        // 1:1 seguro (evita duplicate se cair aqui 2x por qualquer motivo)
+        $ticket->detail()->firstOrCreate([]);
 
-        // Upload de anexo + Job
         if ($request->hasFile('attachment')) {
-            $path = $request->file('attachment')->store("tickets/{$ticket->id}");
+            $path = $request->file('attachment')->store("tickets/{$ticket->id}", 'local');
             $ticket->update(['attachment_path' => $path]);
 
-            ProcessTicketAttachment::dispatch($ticket);
+            // melhor passar ID (evita serialização “estranha” do model em alguns cenários)
+            ProcessTicketAttachment::dispatch($ticket->id);
         }
 
         return redirect()
             ->route('projects.tickets.show', [$project, $ticket])
             ->with('success', 'Ticket criado com sucesso!');
     }
+
 
     public function show(Project $project, Ticket $ticket)
     {

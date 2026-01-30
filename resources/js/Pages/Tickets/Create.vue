@@ -1,20 +1,37 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3'
-import AuthLayout from '@/Layouts/AuthLayout.vue'
+  import { useForm } from '@inertiajs/vue3'
+  import AuthLayout from '@/Layouts/AuthLayout.vue'
+  import { route } from 'ziggy-js'
 
-const props = defineProps({ project: Object })
 
-const form = useForm({
-  title: '',
-  description: '',
-  attachment: null,
-})
+  const props = defineProps({ project: Object })
 
-const submit = () => {
-  form.post(route('projects.tickets.store', props.project.id), {
-    forceFormData: true,
+  const form = useForm({
+    title: '',
+    description: '',
+    attachment: null,
   })
-}
+
+  const submit = () => {
+      form.post(`/projects/${props.project.id}/tickets`, {
+      forceFormData: true,
+    })
+  }
+
+  // const submit = () => {
+  //   console.log('SUBMIT DISPAROU')
+  //   console.log('URL:', route('projects.tickets.store', props.project.id))
+
+  //   form.post(route('projects.tickets.store', props.project.id), {
+  //     forceFormData: true,
+  //     onStart: () => console.log('onStart'),
+  //     onFinish: () => console.log('onFinish'),
+  //     onError: (e) => console.log('onError', e),
+  //     onSuccess: () => console.log('onSuccess'),
+  //   })
+  // }
+
+
 </script>
 
 <template>

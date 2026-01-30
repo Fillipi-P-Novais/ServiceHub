@@ -211,7 +211,7 @@ create.form = createForm
 
 /**
 * @see \App\Http\Controllers\TicketController::store
-* @see app/Http/Controllers/TicketController.php:31
+* @see app/Http/Controllers/TicketController.php:56
 * @route '/projects/{project}/tickets'
 */
 export const store = (args: { project: number | { id: number } } | [project: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -226,7 +226,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\TicketController::store
-* @see app/Http/Controllers/TicketController.php:31
+* @see app/Http/Controllers/TicketController.php:56
 * @route '/projects/{project}/tickets'
 */
 store.url = (args: { project: number | { id: number } } | [project: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -259,7 +259,7 @@ store.url = (args: { project: number | { id: number } } | [project: number | { i
 
 /**
 * @see \App\Http\Controllers\TicketController::store
-* @see app/Http/Controllers/TicketController.php:31
+* @see app/Http/Controllers/TicketController.php:56
 * @route '/projects/{project}/tickets'
 */
 store.post = (args: { project: number | { id: number } } | [project: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -269,7 +269,7 @@ store.post = (args: { project: number | { id: number } } | [project: number | { 
 
 /**
 * @see \App\Http\Controllers\TicketController::store
-* @see app/Http/Controllers/TicketController.php:31
+* @see app/Http/Controllers/TicketController.php:56
 * @route '/projects/{project}/tickets'
 */
 const storeForm = (args: { project: number | { id: number } } | [project: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -279,7 +279,7 @@ const storeForm = (args: { project: number | { id: number } } | [project: number
 
 /**
 * @see \App\Http\Controllers\TicketController::store
-* @see app/Http/Controllers/TicketController.php:31
+* @see app/Http/Controllers/TicketController.php:56
 * @route '/projects/{project}/tickets'
 */
 storeForm.post = (args: { project: number | { id: number } } | [project: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -291,7 +291,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 export const show = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -306,7 +306,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 show.url = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions) => {
@@ -336,7 +336,7 @@ show.url = (args: { project: number | { id: number }, ticket: number | { id: num
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 show.get = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -346,7 +346,7 @@ show.get = (args: { project: number | { id: number }, ticket: number | { id: num
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 show.head = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -356,7 +356,7 @@ show.head = (args: { project: number | { id: number }, ticket: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 const showForm = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -366,7 +366,7 @@ const showForm = (args: { project: number | { id: number }, ticket: number | { i
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 showForm.get = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -376,7 +376,7 @@ showForm.get = (args: { project: number | { id: number }, ticket: number | { id:
 
 /**
 * @see \App\Http\Controllers\TicketController::show
-* @see app/Http/Controllers/TicketController.php:56
+* @see app/Http/Controllers/TicketController.php:83
 * @route '/projects/{project}/tickets/{ticket}'
 */
 showForm.head = (args: { project: number | { id: number }, ticket: number | { id: number } } | [project: number | { id: number }, ticket: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
