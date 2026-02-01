@@ -7,7 +7,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->user = User::factory()->create();
+    $this->user = User::factory()->create([
+        'email_verified_at' => now(),
+    ]);
 });
 
 it('requires authentication to create a company', function () {
@@ -21,15 +23,16 @@ it('requires authentication to create a company', function () {
 
 it('creates a company', function () {
     $response = $this->actingAs($this->user)
-        ->post(route('companies.store'), [
-            'cnpj' => '12345678000199',
-            'nome_fantasia' => 'Empresa X',
-        ]);
+    ->post(route('companies.store'), [
+        'cnpj' => '12.345.678/0001-99',
+        'nome_fantasia' => 'Empresa X',
+    ]);
 
     $response->assertRedirect();
+    $response->assertSessionHasNoErrors();
 
     $this->assertDatabaseHas('companies', [
-        'cnpj' => '12345678000199',
+        'cnpj' => '12.345.678/0001-99',
         'nome_fantasia' => 'Empresa X',
     ]);
 });

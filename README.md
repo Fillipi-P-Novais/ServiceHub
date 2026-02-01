@@ -114,6 +114,9 @@ php artisan test --filter=TicketTest
 php artisan test --filter=TicketValidationTest
 php artisan test --filter=TicketRoutesTest
 php artisan test --filter=TicketAttachmentProcessorTest
+php artisan test --filter=ProjectTest
+php artisan test --filter=DashboardTest
+php artisan test --filter=CompanyTest
 ```
 
 ---

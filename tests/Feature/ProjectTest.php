@@ -12,6 +12,7 @@ beforeEach(function () {
 
 it('requires authentication to create a project', function () {
     $response = $this->post(route('companies.projects.store', $this->company), [
+        'company_id' => $this->company->id,
         'name' => 'Projeto A',
         'description' => 'Descrição do projeto A',
     ]);
@@ -22,11 +23,13 @@ it('requires authentication to create a project', function () {
 it('creates a project for a company', function () {
     $response = $this->actingAs($this->user)
         ->post(route('companies.projects.store', $this->company), [
+            'company_id' => $this->company->id,
             'name' => 'Projeto A',
             'description' => 'Descrição do projeto A',
         ]);
 
     $response->assertRedirect();
+    $response->assertSessionHasNoErrors();
 
     $this->assertDatabaseHas('projects', [
         'company_id' => $this->company->id,
@@ -42,5 +45,8 @@ it('validates required project fields', function () {
     $response = $this->actingAs($this->user)
         ->post(route('companies.projects.store', $this->company), []);
 
-    $response->assertSessionHasErrors(['name']);
+    $response->assertSessionHasErrors([
+        'company_id',
+        'name',
+    ]);
 });

@@ -13,9 +13,7 @@ class CompanyFactory extends Factory
     {
         return [
             'nome_fantasia' => fake()->company(),
-            'cnpj' => fake()->numerify('##############'),
-            'email' => fake()->companyEmail(),
-            'contato_responsavel' => fake()->name(),
+            'cnpj' => fake()->numerify('##############'),      
         ];
 
     }
