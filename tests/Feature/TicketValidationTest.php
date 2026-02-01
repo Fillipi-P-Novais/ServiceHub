@@ -21,8 +21,8 @@ it('validates required fields and minimum description length', function () {
 
     $response = $this->actingAs($this->user)
         ->post(route('projects.tickets.store', $this->project), [
-            'title' => '',                // inválido
-            'description' => 'curto',      // < 10
+            'title' => '',               
+            'description' => 'curto',   
         ]);
 
     $response->assertStatus(302);
@@ -39,7 +39,7 @@ it('accepts only json or txt attachments', function () {
     $response = $this->actingAs($this->user)
         ->post(route('projects.tickets.store', $this->project), [
             'title' => 'Teste',
-            'description' => 'Descrição válida 123', // >= 10
+            'description' => 'Descrição válida 123',
             'attachment' => UploadedFile::fake()->create('malware.exe', 10, 'application/octet-stream'),
         ]);
 
@@ -57,7 +57,7 @@ it('allows valid attachment and creates ticket', function () {
     $response = $this->actingAs($this->user)
         ->post(route('projects.tickets.store', $this->project), [
             'title' => 'Ticket válido',
-            'description' => 'Descrição válida 123', // >= 10
+            'description' => 'Descrição válida 123',
             'attachment' => UploadedFile::fake()->create('data.json', 100, 'application/json'),
         ]);
 

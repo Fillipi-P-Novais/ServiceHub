@@ -15,14 +15,14 @@ beforeEach(function () {
     $this->project = Project::factory()->for($this->company)->create();
 });
 
-// Teste de relacionamentos
+
 it('ticket belongs to project and has detail', function () {
     $ticket = Ticket::factory()
         ->for($this->project)
         ->for($this->user)
         ->create();
 
-    // cria apenas se não existir (nunca duplica)
+    
     $ticket->detail()->firstOrCreate([]);
 
     $ticket->refresh();
@@ -32,7 +32,7 @@ it('ticket belongs to project and has detail', function () {
         ->and($ticket->user->id)->toBe($this->user->id);
 });
 
-// Teste de criação via controller
+
 it('creates ticket with attachment and dispatches job', function () {
     Queue::fake();
     Storage::fake();
@@ -53,7 +53,7 @@ it('creates ticket with attachment and dispatches job', function () {
     Queue::assertPushed(ProcessTicketAttachment::class);
 });
 
-// Teste do Job
+
 it('processes attachment and updates ticket detail', function () {
     Storage::fake();
 

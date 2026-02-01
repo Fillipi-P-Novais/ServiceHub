@@ -30,9 +30,7 @@ class ProjectController extends Controller
     }
 
     public function store(StoreProjectRequest $request, Company $company)
-    {
-        //$company->projects()->create($request->validated());
-
+    {        
         Project::create($request->validated());
 
         return redirect()->route('projects.index');
